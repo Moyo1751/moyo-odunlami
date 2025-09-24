@@ -6,13 +6,11 @@ export default function About() {
   const paragraphThree =
     "I enjoy transforming ideas into seamless digital experiences, with a strong focus on performance, accessibility, and clean code. I’m always eager to learn, collaborate, and take on new challenges in the ever-evolving tech space.";
   return (
-    <article>
-      <section>
-        <h2 className="text-center">About Me</h2> <br />
-        <p className="text-justify">{paragraphOne}</p> <br />
-        <p className="text-justify">{paragraphTwo}</p> <br />
-        <p className="text-justify">{paragraphThree}</p> <br />
-      </section>
-    </article>
+    <section>
+      <h2 className="text-center">About Me</h2> <br />
+      <p className="text-justify">{paragraphOne}</p> <br />
+      <p className="text-justify">{paragraphTwo}</p> <br />
+      <p className="text-justify">{paragraphThree}</p> <br />
+    </section>
   );
 }
