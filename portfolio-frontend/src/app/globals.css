@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Black, blue, light blue developer color palette */
+  --background: 0 0% 4%;
+  --foreground: 210 10% 95%;
 }
 
 @theme inline {
@@ -10,17 +11,173 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-accent: hsla(200, 100%, 70%, 0.5);
+
+  --color-blue-gray: hsla(240, 15%, 15%, 0.85);
+
+  --color-github-btn: hsl(200, 100%, 70%);
+  --color-github-btn-text: hsl(200, 100%, 10%);
+
+  --color-border: 220 25% 16%;
+
+  --gradient-complex: conic-gradient(
+    from 0deg at 50% 50%,
+    hsl(220 90% 56%),
+    hsl(200 100% 70%),
+    hsl(180 100% 75%),
+    hsl(220 90% 56%)
+  );
+  --gradient-radial-complex: radial-gradient(
+    ellipse 800px 600px at 50% 20%,
+    hsla(220, 90%, 56%, 0.3),
+    hsla(200, 100%, 70%, 0.2),
+    hsla(0, 0%, 4%, 0.8)
+  );
+
+  /* Advanced geometric patterns with blue colors */
+  --pattern-grid: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsla(220, 90%, 56%, 0.03) 2px,
+      hsla(220, 90%, 56%, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      hsla(200, 100%, 70%, 0.03) 2px,
+      hsla(200, 100%, 70%, 0.03) 4px
+    );
+
+  --pattern-hexagon: radial-gradient(
+      circle at 50% 50%,
+      hsla(220, 90%, 56%, 0.1) 2px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 25% 75%,
+      hsla(200, 100%, 70%, 0.08) 2px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 75% 25%,
+      hsla(180, 100%, 75%, 0.06) 2px,
+      transparent 2px
+    );
+
+  --color-nav-text-hover: hsl(210, 10%, 95%);
+  --color-nav-text: hsl(210 8% 65%);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer components {
+  .glass-card {
+    background-color: hsla(240, 15%, 15%, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(0, 0%, 100%, 0.15);
+    position: relative;
+  }
+
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: var(--gradient-complex);
+    transform: rotate(28deg);
+    opacity: 0.04;
+    z-index: -1;
+  }
+
+  .glass-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsla(200, 100%, 70%, 0.5),
+      transparent
+    );
+  }
+
+  .glass-nav {
+    background-color: hsla(240, 15%, 15%, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(0, 0%, 100%, 0.15);
+    position: relative;
+  }
+
+  .glass-nav::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 100%;
+    height: 100%;
+    /* box-shadow: ; */
+    opacity: 0.03;
+    z-index: -1;
+  }
+
+  .glass-nav::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsla(200, 100%, 70%, 0.5),
+      transparent
+    );
+  }
+}
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--gradient-radial-complex);
+  /* color: var(--foreground); */
   font-family: Arial, Helvetica, sans-serif;
+  min-width: 320px;
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--pattern-grid);
+  background-size: cover;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--pattern-hexagon);
+  background-size: cover;
+  pointer-events: none;
+  z-index: -1;
 }
